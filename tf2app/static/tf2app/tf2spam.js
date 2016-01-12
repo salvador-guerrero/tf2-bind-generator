@@ -1,16 +1,22 @@
-angular.module('spamapp', [])
+angular.module('spamapp', ['ui.bootstrap'])
   .controller('spamappController', function() {
 
     var tf2app = this;
 
     tf2app.keylist = [
+        {label: "Insert", value: "INS"},
+        {label: "Delete", value: "DEL"},
         {label: "Home", value: "HOME"},
-        {label: "Home (Keypad)", value: "KP_HOME"},
         {label: "End", value: "END"},
+        {label: "PgUp", value: "PGUP"},
+        {label: "PgDn", value: "PGDN"},
+        {label: "Home (Keypad)", value: "KP_HOME"},
         {label: "End (Keypad)", value: "KP_END"},
+        {label: "PgUp (Keypad)", value: "KP_PGUP"},
+        {label: "PgDn (Keypad)", value: "KP_PGDN"},
     ]
 
-    tf2app.spamtext = "";
+    tf2app.spamtext = "Sample Text\nSample Text";
     tf2app.scriptprefix = "spam";
     tf2app.scriptdelay = 300;
     tf2app.selectedKey = tf2app.keylist[0];
@@ -21,7 +27,12 @@ angular.module('spamapp', [])
     tf2app.convert = function() {
       var lineList = tf2app.spamtext.split("\n");
 
-      tf2app.spamscript = 'bind "' + tf2app.selectedKey.value + '" "start' + tf2app.scriptprefix + '" \n';
+      tf2app.spamscript = '//Script created with https://tf2bindgenerator.appspot.com\n';
+      tf2app.spamscript += '//on ' + Date() + '\n';
+
+      tf2app.spamscript += 'bind "' + tf2app.selectedKey.value + '" "start' + tf2app.scriptprefix + '" \n';
+
+
 
       lineList.forEach(function(element, index, array) {
 

@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app="spamapp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/tf2app/appstyle.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.0.0/ui-bootstrap-tpls.min.js"></script>
+  <script src="/static/tf2app/tf2spam.js"></script>
+
+  <title> TF2 Text to Bind Generator</title>
+
+</head>
+
+<body>
+  <div ng-controller="spamappController as tf2spam" class="container">
+    <h1>TF2 Text to Bind Generator</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <form ng-submit="tf2spam.convert()">
+          <div class="form-group">
+            <label for="spamtext">Text you want to spam</label>
+            <textarea id="spamtext" class="form-control tall-textarea" ng-model="tf2spam.spamtext"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="scriptkey">Key to activate script</label>
+            <select id="scriptkey" class="form-control" ng-model="tf2spam.selectedKey" ng-options="option.label for option in tf2spam.keylist track by option.value"></select>
+          </div>
+          <div class="form-group">
+            <label for="scriptprefix">Script Prefix (Change if you want to have multiple scripts)</label>
+            <input id="scriptprefix" class="form-control" type="text" ng-model="tf2spam.scriptprefix"></input>
+          </div>
+          <div class="form-group">
+            <label for="scriptdelay">Script delay</label>
+            <input id="scriptdelay" class="form-control" type="number" ng-model="tf2spam.scriptdelay" />
+          </div>
+          <button type="submit" class="btn btn-primary">Generate Script</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <textarea ng-model="tf2spam.spamscript" class="form-control tall-textarea" ng-readonly></textarea>
+      </div>
+      <div class="col-md-6">
+        <uib-accordion close-others="false">
+          <uib-accordion-group>
+            <uib-accordion-heading>
+              How to use <i class="fa fa-question"></i>
+            </uib-accordion-heading>
+            <li>Copy your text into the big box on top</li>
+            <li>Push the Generate button</li>
+            <li>Copy the generated script into a new file called autoexec.cfg</li>
+            <li>Save that file at this location (Create new folders if missing) C:\Program Files\Steam\steamapps\common\Team Fortress 2\tf\custom\texttobind\cfg</li>
+            <li>Done! Open TF2 and have fun</li>
+          </uib-accordion-group>
+        </uib-accordion>
+
+      </div>
+    </div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li><a href="https://www.reddit.com/r/tf2/comments/40c889/i_made_a_tf2_bind_for_the_entire_bee_movie_script/"><i class="fa fa-reddit-alien fa-lg fa-inverse fa-fw"></i>&nbsp;Inspired by this reddit thread</a></li>
+          <li><a href="https://github.com/salvador-guerrero/tf2-bind-generator"><i class="fa fa-github fa-lg fa-inverse fa-fw"></i>&nbsp;Github</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <p class="navbar-text">Salvador Guerrero</p>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+</body>
+
+</html>
